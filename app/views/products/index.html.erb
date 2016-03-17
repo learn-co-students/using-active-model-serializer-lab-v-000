@@ -7,18 +7,29 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
-  $(".js-more").on("click", function() {
+  $(".js-more").on("click", function(event) {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
+    $.get("/products/" + id + ".json", function(data) {
+      
+      var inventoryText = "Sold Out";
+      if (data['product']['inventory'] > 0){
+        inventoryText = "Available";
+      }
+      
+      descriptionText = data['product']['description'];
+      
+      var orderText = "<ul>";
+      data['product']['orders'].forEach(function(order){
+        orderText += "<li> <p>Order #: " + order["id"]+"</p> <p>Order date: " + order["created_at"]+"</p>";
+        orderText += "<p> Order Items:</p><ul>";
+        order['products'].forEach(function(product){
+          orderText += "<li> <p>" + product["name"] + "</p> </li>";
+        });
+        orderText += "</ul></li>"; 
       });
+      $("#product-"+id).html("<p>"+descriptionText+"</p><p>"+inventoryText+"</p><p>"+orderText+"</p>");
     });
+    event.preventDefault();
   });
 });
 </script>
