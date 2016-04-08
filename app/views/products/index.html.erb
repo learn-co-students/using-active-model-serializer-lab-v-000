@@ -12,10 +12,32 @@ $(function() {
     $.get("/products/" + id + ".json", function(data) {
       var product = data.product;
       var inventoryText = product.inventory === 0 ? "Sold Out" : "Available";
-
-      var descriptionText = "<p><strong>" + product.name + "</strong></p><p>" + product.description + "</p><p><strong>" + inventoryText + "</strong></p>";
+      var descriptionText = "<p>" + product.description + "</p><p><strong>" + inventoryText + "</strong></p>"
+      if (product.orders.length > 0) {
+        descriptionText += listOrders(product.orders)
+      }
       $("#product-" + id).html(descriptionText);
     });
   });
 });
+
+
+function listOrders(orders) {
+  var list = "<strong>Orders:</strong><ul>";
+  orders.forEach(function(order) {
+    list += listProducts(order.products)
+    list += "<li>Id: " + order.id+ "</li>";
+    list += "<li>Created at: " + order.created_at + "</li>";
+   })
+  return list += "</ul>"; 
+}
+
+function listProducts(products) {
+  var listProducts = "<strong>Products:</strong><ul>";
+  products.forEach(function(product) {
+    listProducts += "<li>" + product.name + "</li>";
+  })
+  return listProducts += '</ul>'
+}
+
 </script>
