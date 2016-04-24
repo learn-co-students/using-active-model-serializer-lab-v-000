@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  <title>RailsLayoutsAndTemplatesLab</title>
+  <link data-turbolinks-track="true" href="/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="/assets/application-567c60b615d5a6e9df6afc4136e6d65700f8b422df9e8c713e14e17db5babf8e.js"></script>
+  
+</head>
+<body>
+
+<h1>Flatiron Widgets Store</h1>
+
+
+<h1>Products</h1>
+  <h3>Test Product</h3>
+  <div id="product-2113"><p>This is a test description with more text than should be there.</p><p><strong>Sold Out</strong></p></div>
+  <button data-id="2113" class="js-more">More Info</button>
+
+<script charset="utf-8" type="text/javascript">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + ".json", function(description) {
+      // $.get("/products/" + id + "/inventory", function(inventory) {
+        var inventoryText = "&lt;strong&gt;Available&lt;/strong&gt;";
+        if(description.product.inventory === 0){
+          inventoryText = "&lt;strong&gt;Sold Out&lt;/strong&gt;";
+        }
+        // debugger;
+        var descriptionText = "&lt;p&gt;" + description.product.description + "&lt;/p&gt;&lt;p&gt;" + inventoryText + "&lt;/p&gt;";
+        $("#product-" + id).html(descriptionText);
+      // });
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>
