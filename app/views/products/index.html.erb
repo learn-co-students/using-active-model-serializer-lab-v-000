@@ -9,16 +9,31 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
+    $.get("/products/" + id + ".json", function(description) {
+      var info = description["product"];
+      var name = info["name"] + "<br>";
+      var description = info["description"];
+      var inventory = info["inventory"];
+      if (parseInt(inventory, 10) > 0) {
+        var stocked = "Available <br>" + "count: " + inventory;
+      } else {
+        stocked = "Sold Out";
+      };
+      var orders = info["orders"];
+      var orderStatus = "<ul>";
+      orders.forEach(function(order) {
+        orderStatus += "<li>" + "Order ID: " + order["id"] + "</li>";
+        orderStatus += "<li>" + "Order Created At: " + order["created_at"] + "</li>";
+        var products = order["products"];
+        products.forEach(function(productos) {
+          orderStatus += "<li>" + "Products in Order: " + productos["name"] + "</li>";
+          });
       });
+      orderStatus += "</ul>";
+      var new_info = "<p>" + description + "</p>";
+      $('#product-' + id).html(new_info + stocked + orderStatus);
+     });
     });
   });
-});
+
 </script>
