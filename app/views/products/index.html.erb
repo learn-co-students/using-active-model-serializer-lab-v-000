@@ -3,6 +3,11 @@
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <div id="inventory-<%= product.id %>"></div>
+  <div id="orders-<%= product.id %>">
+    <ul>
+    
+    </ul>
+  </div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
@@ -17,6 +22,11 @@ $(function() {
         $("#inventory-" + id).text("Available");
       } else {
         $("#inventory-" + id).text(product["name"] + " Sold Out");
+      }
+      var list = $("#orders-" + id + " ul");
+      for (i = 0 ; i < product["orders"].length ; i++ ) {
+        var content = '<li>Order #' + product["orders"][i]["id"] + ' - ' + product["orders"][i]["created_at"] + '</li>';
+        $(list).append(content);
       }
     });
   });
