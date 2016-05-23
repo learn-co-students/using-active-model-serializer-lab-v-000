@@ -11,38 +11,31 @@ $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
+      var product = data["product"]
+
         var inventoryText = "<strong>Available</strong>";
-        if(data["inventory"] === 0){
+        if(product["inventory"] === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = data["description"] + inventoryText;
+        var descriptionText = product["description"] + inventoryText;
         $("#product-" + id).html(descriptionText);
 
-        // var orders = data["orders"];
-        // var orderList = "";
-        // orders.forEach(function(order) {
-        //   orderList += order["id"];
-        //   orderList += "<br>";
-        //   orderList += order["created_at"];
-        //   orderList += "<br>";
-        //
-        //   products = order["products"];
-        //   products.forEach(function(product) {
-        //     orderList += product["name"];
-        //   });
-        // });
+        var orders = product["orders"];
+        var orderList = "";
+        orders.forEach(function(order) {
+          orderList += order["id"];
+          orderList += "<br>";
+          orderList += order["created_at"];
+          orderList += "<br>";
 
-      var orders = data["orders"];
-      var orderList = "";
-      orders.forEach(function(order) {
-        orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"];
-        orderList += ' <br>Products:<ol>';
-        products = order["products"];
-        products.forEach(function(prod) {
-          orderList += '<li>' + prod["name"] + '</li>';
+          products = order["products"];
+          products.forEach(function(product) {
+            orderList += product["name"];
+            orderList += "<br>";
+
+          });
         });
-        orderList += '</ol></li>';
-      });
+
         $("#order-" + id).html(orderList);
     });
   });
