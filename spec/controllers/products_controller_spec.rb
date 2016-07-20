@@ -22,7 +22,6 @@ RSpec.describe ProductsController, type: :controller do
   describe "GET show" do
     it 'returns a JSON representation of the product' do
       product = Product.create(@product_attributes)
-
       get :show, id: product.id, format: 'json'
       body = JSON.parse(response.body)["product"]
       expect(body["name"]).to eq product.name
