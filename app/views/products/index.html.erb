@@ -1,10 +1,9 @@
 <h1>Products</h1>
 <% @products.each do |product| %>
-  <h3><%= product.name %>, count: <%= product.inventory %></h3>
-  <div id="product-<%= product.id %>"></div>
-
+  <h3><%= product.name %></h3>
+  <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
-   <ul id="product-<%= product.id %>-orders">
+  <ul id="product-<%= product.id %>-orders">
   </ul>
 <% end %>
 
@@ -12,25 +11,31 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + ".json", function(json) {
+    $.get("/products/" + id + ".json", function(data) {
+      var product = data["product"];
       var inventoryText = "<strong>Available</strong>";
-      if(json["inventory"] === 0){
+      if(product.inventory === 0){
         inventoryText = "<strong>Sold Out</strong>";
       }
-      var descriptionText = "<p>" + json["description"] + "</p><p>" + inventoryText + "</p>";
+      var orderId = [];
+      var orderCreated = [];
+      var orderProducts =[];
+      $.each(product["orders"], function(index, order) {
+        orderId.push(order["id"]);
+        orderCreated.push(order["created_at"]);
+        var products = [];
+        for (var i = 0; i < order.products.length; i++) {
+          products.push(order.products[i]["name"]);
+        }
+        orderProducts.push(products);
+      })
+      var ordersText;
+      for (var i = 0; i < orderId.length; i++) {
+        ordersText += "<li>" + orderId[i] + ": " + orderCreated[i] + "products: " + orderProducts.join(", ") + "</li>";
+      }
+      var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
       $("#product-" + id).html(descriptionText);
-      var orders = json["orders"];
-      var orderList = "";
-      orders.forEach(function(order) {
-        orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"];
-        orderList += ' <br>Products:<ol>';
-        products = order["products"];
-        products.forEach(function(i) {
-          orderList += '<li>' + i["name"] + '</li>';
-        });
-        orderList += '</ol></li>';
-      });
-      $("#product-" + id + "-orders").html(orderList);
+      $("#product-" + id + "-orders").html(ordersText);
     });
   });
 });
