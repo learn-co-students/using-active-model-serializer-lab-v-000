@@ -9,15 +9,36 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+    $.get("/products/" + id + ".json", function(data) {
+   
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+        if(data['inventory'] === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + data["id"]).html(descriptionText);
+        $("#product-" + data["id"]).append('<ul id="orders-' + data["id"] + '"></ul>')
+        for (i = 0; i < data["orders"].length; i++) {
+       
+          $.get("/orders/" + data["orders"][i]["id"] + ".json", function(order) {
+
+            $('#orders-' + data["id"]).append("<li>Order Id: " + order["id"] + "</li>")
+            $('#orders-' + data["id"]).append("<li>Created At :" + order["created_at"] + "</li>")
+          
+             $('#orders-' + data["id"]).append('<ul id="' + order["id"] + '-products">Products</ul>')
+            for (p = 0; p < order["products"].length; p ++ ) {
+
+              $('#'+order["id"]+'-products').append('<li>Product Id: '+ order["products"][p]["id"] + '</li>')
+              $('#'+order["id"]+'-products').append('<li>Product Name: '+ order["products"][p]["name"] + '</li>')
+             
+            }
+
+
+          })
+        }
+
+        
+   
     });
   });
 });
