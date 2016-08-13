@@ -6,19 +6,21 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-next").on("click", function() {
+  $(".js-next").on("click", function(e) {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/products/" + nextId + ".json", function(data) {
-      var product = data["product"];
-      console.log(data)
-      $(".productName").text(product["name"]);
-      $(".productPrice").text(product["price"]);
-      $(".productDescription").text(product["description"]);
-      $(".productInventory").text(product["inventory"]);
+      var p = data["product"];
+      $(".productName").text(p["name"]);
+      $(".productPrice").text(p["price"]);
+      $(".productDescription").text(p["description"]);
+      $(".productInventory").text(p["inventory"]);
       // re-set the id to current on the link
-      $(".js-next").attr("data-id", product["id"]);
+      $(".js-next").attr("data-id", p["id"]);
     });
+    e.preventDefault();
   });
 });
 </script>
+
+
 
