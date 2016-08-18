@@ -15,7 +15,17 @@ $(function() {
           inventoryText = "<strong>Sold Out</strong>";
         }
         var descriptionText = "<p>" + product.name + ": " + product.description + "</p><p>" + inventoryText + "</p>";
+        var orders = product["orders"]
+        var ordersString = "<p>";
+
+        orders.forEach(function(order) {
+          ordersString += "Order:" + order.id
+          ordersString += "Created at: " + order.created_at
+          ordersString += "</p>"
+        });
+
         $("#product-" + id).html(descriptionText);
+        $("#product-" + id).html(ordersString);
     });
   });
 });

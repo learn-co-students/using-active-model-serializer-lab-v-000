@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'active_model_serializers', '0.8.0'
+gem 'poltergeist'
+gem 'active_model_serializers'
 gem 'pry'
 gem 'pry-nav'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
