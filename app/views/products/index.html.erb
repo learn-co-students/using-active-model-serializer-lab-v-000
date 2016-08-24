@@ -12,11 +12,6 @@ $(function() {
     var inventoryText;
     var descriptionText;
 
-      $.get("/products/"+ id + ".json", function(data) {
-          var name = data["name"];
-          $("#product-" + id).html(descriptionText);
-      });
-
       $.get("/products/" + id + "/inventory", function(inventory) {
         inventoryText = "<strong>Available</strong>";
           if (inventory === "false"){
@@ -29,6 +24,11 @@ $(function() {
           var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
       });
       
+      $.get("/products/"+ id + ".json", function(data) {
+          var name = data["name"];
+          $("#product-" + id).html(descriptionText);
+      });
+
       // debugger
           // $(".js-more").attr("data-id", data["id"]);
     
