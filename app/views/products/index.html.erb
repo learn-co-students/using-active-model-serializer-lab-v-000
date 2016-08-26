@@ -10,27 +10,20 @@ $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
     var inventoryText;
-    var descriptionText;
-
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        inventoryText = "<strong>Available</strong>";
-          if (inventory === "false"){
-            inventoryText = "<strong>Sold Out</strong>";
-          }
-      });
-
-      $.get("/products/" + id + "/description", function(description) {
-
-          var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-      });
       
       $.get("/products/"+ id + ".json", function(data) {
-          var name = data["name"];
+          var descriptionText;
+          var inventoryText = "<strong>Available</strong>";
+          var name          = data["name"];
+          var description   = data["description"];
+
+          if (data['inventory'] === 0 ){
+            inventoryText = "<strong>Sold Out</strong>";
+          }
+          var descriptionText = "<h1>"+name+"</h1>"+"<p>" + description + "</p><p>" + inventoryText + "</p>";
+
           $("#product-" + id).html(descriptionText);
       });
-
-      // debugger
-          // $(".js-more").attr("data-id", data["id"]);
     
   });
 });

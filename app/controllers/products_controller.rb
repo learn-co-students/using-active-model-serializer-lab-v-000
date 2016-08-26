@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   def show
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @product }
+      format.json { render json: @product.as_json(methods: [:inventory, :description],:except => [:created_at, :updated_at])}
     end
   end
 
