@@ -18,6 +18,12 @@ $(function() {
       }
       var descriptionText = "<p>" + data["product"]["description"] + "</p><p>" + inventoryText + "</p>";
       $("#product-" + id).html(descriptionText);
+      data["product"]["orders"].forEach(function(order) {
+        var li = $("#orders").append($('<li>').html(order["id"]))
+        order["products"].forEach(function(product) {
+          li.append(product["name"])
+        })
+      })
     });
   });
 });
