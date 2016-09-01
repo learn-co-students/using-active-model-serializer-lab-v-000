@@ -10,16 +10,22 @@ $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
+        var product = data["product"];
         var inventoryText = "<strong>Available</strong>";
-        if(data["inventory"] < 1){
+        if(product["inventory"] < 1){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+        var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
-        $.each(data["orders"], function(index, order){
+        $.each(product["orders"], function(index, order){
           $("#product-" + id).append("order id: " + order["id"]);
           $("#product-" + id).append("| created_at: " + order["created_at"]);
-          debugger
+          orderproducts = order["products"];
+          $.each(orderproducts, function(index, ordproduct) {
+            $("#product-" + id).append(" | product: " + ordproduct["name"] );
+          });
+
+          // debugger
         });
 
     });
