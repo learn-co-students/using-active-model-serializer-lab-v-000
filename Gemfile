@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'active_model_serializers'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -41,6 +43,7 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do
