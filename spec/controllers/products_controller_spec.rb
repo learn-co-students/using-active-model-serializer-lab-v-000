@@ -6,7 +6,7 @@ RSpec.describe ProductsController, type: :controller do
     Customer.destroy_all
     Invoice.destroy_all
     Order.destroy_all
-    @product_attributes = {name: "Test", price: "3.99", inventory: 12, description: "This is a great thing"}
+    @product_attributes = {name: "Test", price: 4, inventory: 12, description: "This is a great thing"}
   end
 
   describe "POST create" do
