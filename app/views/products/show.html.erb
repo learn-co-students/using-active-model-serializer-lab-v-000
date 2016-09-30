@@ -9,13 +9,13 @@ $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/products/" + nextId + ".json", function(data) {
-      var product = data["product"];
-      $(".productName").text(product["name"]);
-      $(".productPrice").text(product["price"]);
-      $(".productDescription").text(product["description"]);
-      $(".productInventory").text(product["inventory"]);
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", product["id"]);
+      var body = data["product"];
+      $(".productName").text(body["name"]);
+      $(".productPrice").text(body["price"]);
+      $(".productDescription").text(body["description"]);
+      $(".productInventory").text(body["inventory"]);
+     
+      $(".js-next").attr("data-id", body["id"]);
     });
   });
 });
