@@ -2,6 +2,11 @@
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <div id="orders-<%= product.id %>">
+    <ul>
+
+    </ul>
+  </div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
@@ -9,15 +14,24 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+    $.get("/products/" + id + ".json", function(data) {
+
+        var product = data['product'];
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+
+        if(product['inventory'] === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        var descriptionText = "<p>" + product['description'] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
-      });
+
+        var orders = product['orders'];
+
+        $('#orders-' + id + ' ul').html("");
+        
+        orders.forEach(function(order){
+          $('#orders-' + id + ' ul').append('<b>ID:</b> ' + order['id'] + ' <b>Date:</b> ' + order['created_at'] + '<br />');
+        });
     });
   });
 });

@@ -9,4 +9,7 @@ RSpec.configure do |config|
   end
 
   config.color = true
+
+  Selenium::WebDriver::Firefox::Binary.path =
+  "/home/nathaniel/firefox-sdk//bin/firefox"
 end
