@@ -15,7 +15,7 @@ RSpec.describe "Products", type: :feature do
 
       visit product_path(p1)
       expect(page).to have_content p1.name
-      click_link "Next Product"
+      click_button "Next Product"
       expect(page).not_to have_content p2.name
     end
 
@@ -26,7 +26,7 @@ RSpec.describe "Products", type: :feature do
       visit product_path(p1)
       expect(page).to have_content p1.name
       expect(page).to have_content p1.description
-      click_link "Next Product"
+      click_button "Next Product"
       expect(page).to have_content p2.name
       expect(page).to have_content p2.description
     end
