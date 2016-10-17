@@ -26,9 +26,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'poltergeist'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem "active_model_serializers", "~> 0.9.0"
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
