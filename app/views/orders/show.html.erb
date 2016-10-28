@@ -1,0 +1,17 @@
+<a href="#" class="js-next" data-id="<%=@order.id%>">Next order</a>
+<h1 class="orderId"><%= @order.id %></h1>
+<p class="orderCreatedAt"><%= @order.created_at %></p>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/orders/" + nextId + ".json", function(data) {
+      $(".orderId").text(data["id"]);
+      $(".orderCreatedAt").text(data["created_at"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
