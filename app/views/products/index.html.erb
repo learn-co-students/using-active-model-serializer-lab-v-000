@@ -10,13 +10,22 @@ $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
-        debugger;
-        var inventoryText = "<strong>Available</strong>";
-        if(product.inventory == 0){
-          inventoryText = "<strong>Sold Out</strong>";
+        var inventoryText = "Available";
+
+        if(data.inventory == 0){
+          inventoryText = "Sold Out";
         }
-        var descriptionText = "<p>" + product.description + "</p><p>" + inventoryText + "</p>";
+
+        var descriptionText = data.description + inventoryText;
         $("#product-" + id).html(descriptionText);
+
+        var productInfo = data.name + data.price + descriptionText
+        var orders = data["orders"];
+        orders.forEach(function(order){
+          productInfo += 'Order ID: ' + order.id;
+          productInfo += 'Created at: ' + order.created_at;
+        });
+        $("#product-" + id).text(productInfo);
     });
   });
 });

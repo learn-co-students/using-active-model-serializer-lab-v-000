@@ -3,12 +3,15 @@
 <p class="productInventory"><%= @product.inventory %></p>
 <p class="productPrice"><%= @product.price %></p>
 <p class="productDescription"><%= @product.description %></p>
-<% if @product.orders %>
-  <% @product.orders.each do |order| %>
-    Order ID#: <p class="productOrdersId"><%= order.id %></p>
-    Created at: <p class="productOrdersCreation"><%= order.created_at %></p>
+<div class="orders">
+  <% if @product.orders %>
+    <% @product.orders.each do |order| %>
+      Order ID#: <p class="productOrdersId"><%= order.id %></p>
+      Created at: <p class="productOrdersCreation"><%= order.created_at %></p>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
@@ -19,6 +22,7 @@ $(function () {
       $(".productPrice").text(product["price"]);
       $(".productDescription").text(product["description"]);
       $(".productInventory").text(product["inventory"]);
+      debugger;
       $(".productOrdersId").text(product["orders"]["id"]);
       $(".productOrdersCreation").text(product["orders"]["created_at"]);
       // re-set the id to current on the link
