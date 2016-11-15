@@ -9,26 +9,26 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + ".json", function(description) {
-        var inventory = data["inventory"];
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory <= 0){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-        var orderText = "";
-        data["orders"].forEach(function(order, index){
-          orderText += "<div>" + "Order #: " + order["id"] + "</div>";
-          orderText += "<div>" + "Created: " + order["created_at"] + "</div>";
-          orderText += "<div>" + "Products: ";
-          order["products"].forEach(function(item, index){
-            orderText += "<div>" + item["name"] + ": $ " + item["price"];
-          });
-          orderText += "</div>";
+    $.get("/products/" + id + ".json", function(data) {
+      var inventory = data["inventory"];
+      var inventoryText = "<strong>Available</strong>";
+      if(inventory <= 0){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+      $("#product-" + id).html(descriptionText);
+      var orderText = "";
+      data["orders"].forEach(function(order, index){
+        orderText += "<div>" + "Order #: " + order["id"] + "</div>";
+        orderText += "<div>" + "Created: " + order["created_at"] + "</div>";
+        orderText += "<div>" + "Products: ";
+        order["products"].forEach(function(item, index){
+          orderText += "<div>" + item["name"] + ": $ " + item["price"];
         });
-        $("#product-" + id).append(orderText);
+        orderText += "</div>";
       });
+      $("#product-" + id).append(orderText);
     });
   });
+});
 </script>
