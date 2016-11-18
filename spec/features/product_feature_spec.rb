@@ -43,6 +43,7 @@ RSpec.describe "Products", type: :feature do
       visit products_path
       expect(page).to have_content(product.name, count: 1)
       expect(page).not_to have_content product.description
+      binding.pry
       click_button "More Info"
       expect(page).to have_content product.description
       expect(page).to have_content "Sold Out"
