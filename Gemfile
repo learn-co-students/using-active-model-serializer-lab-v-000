@@ -32,7 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'active_model_serializers', '0.9.4'
 
+# (0.9.4)
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -41,6 +43,7 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'selenium-webdriver'
+  gem 'poltergeist'
 end
 
 group :development do
