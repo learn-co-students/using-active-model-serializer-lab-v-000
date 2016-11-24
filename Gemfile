@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'active_model_serializers'
+gem 'active_model_serializers', '0.9.4'
 
 gem 'pry'
 gem 'pry-nav'
