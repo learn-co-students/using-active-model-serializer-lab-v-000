@@ -9,16 +9,40 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+    $.get("/products/" + id + ".json", function(product) {
+
+      var inventoryText = "<strong>Available</strong>";
+      if( product["inventory"] === 0 ){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
+      var prOrders = product["orders"];
+
+
+      for (var i=0; i < prOrders.length; i++) {
+        var order_id = prOrders[i]["id"];
+
+
+        descriptionText += '<div id="order-' + order_id + '">' +
+                           "<p> Product Order Id: " + order_id + "</p>" +
+                           "<p> created at " + prOrders[i]["created_at"] + "</p>" +
+                           "</div>" + "<br>"
+
+        $.get("/orders/" + order_id + ".json", function(order) {
+          var orProducts = order["products"];
+          var newOrderId = order["id"];
+          var orderText = ""
+          for (var n=0; n < orProducts.length; n++) {
+            orderText += "<p> Product name (order #" + newOrderId + "): "+ orProducts[n]["name"] + "</p>"
+          }
+          $("#order-" + newOrderId).append(orderText);
+        });
+      }
+
+      $("#product-" + id).html(descriptionText);
+
     });
+
   });
 });
 </script>
