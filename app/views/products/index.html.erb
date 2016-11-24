@@ -11,10 +11,10 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + ".json", function(product) {
-      // var product = data["product"];
+    $.get("/products/" + id + ".json", function(data) {
+      var product = data["product"];
       var inventoryText = "<strong>Available</strong>";
-      // // debugger;
+      debugger;
       if(product["inventory"] === 0){
         inventoryText = "<strong>Sold Out</strong>";
       }
