@@ -6,7 +6,8 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-next").on("click", function() {
+  $(".js-next").on("click", function(event) {
+    event.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/products/" + nextId + ".json", function(data) {
       var product = data["product"];
@@ -14,7 +15,6 @@ $(function () {
       $(".productPrice").text(product["price"]);
       $(".productDescription").text(product["description"]);
       $(".productInventory").text(product["inventory"]);
-      // re-set the id to current on the link
       $(".js-next").attr("data-id", product["id"]);
     });
   });
