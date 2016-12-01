@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+gem "active_model_serializers", "~> 0.9.0"
+gem 'chromedriver-helper'
 gem 'pry'
 gem 'pry-nav'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
