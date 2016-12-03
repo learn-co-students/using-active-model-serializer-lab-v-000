@@ -1601,3 +1601,1030 @@ Processing by ProductsController#show as JSON
   [1m[36mOrder Load (0.2ms)[0m  [1mSELECT "orders".* FROM "orders" INNER JOIN "ordered_products" ON "orders"."id" = "ordered_products"."order_id" WHERE "ordered_products"."product_id" = ?[0m  [["product_id", 13]]
   [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products" INNER JOIN "ordered_products" ON "products"."id" = "ordered_products"."product_id" WHERE "ordered_products"."order_id" = ?  [["order_id", 20]]
 Completed 200 OK in 29ms (Views: 25.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products" for ::1 at 2016-12-02 15:32:47 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.5ms)[0m  SELECT "products".* FROM "products"
+  Rendered products/index.html.erb within layouts/application (24.1ms)
+Completed 200 OK in 553ms (Views: 529.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/products/12/description" for ::1 at 2016-12-02 15:32:50 -0600
+Processing by ProductsController#description as */*
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 17ms (Views: 1.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/12/inventory" for ::1 at 2016-12-02 15:32:50 -0600
+Processing by ProductsController#inventory as */*
+  Parameters: {"id"=>"12"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 12]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/1" for ::1 at 2016-12-02 15:32:54 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Product with 'id'=1):
+  app/controllers/products_controller.rb:26:in `show'
+
+
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.0ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (73.8ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (70.8ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (154.1ms)
+
+
+Started GET "/products/3" for ::1 at 2016-12-02 15:33:04 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 3]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Product with 'id'=3):
+  app/controllers/products_controller.rb:26:in `show'
+
+
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.5ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (102.9ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.9ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (64.7ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (147.4ms)
+  [1m[36mProduct Load (2.1ms)[0m  [1mSELECT "products".* FROM "products"[0m
+
+
+Started GET "/products/12" for ::1 at 2016-12-02 15:33:50 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+  Rendered products/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 32ms (Views: 29.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-02 15:34:07 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.34ms)
+Completed 200 OK in 30ms (Views: 27.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/12" for ::1 at 2016-12-02 15:35:11 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+  Rendered products/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 38ms (Views: 35.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:35:11 -0600
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-02 15:35:13 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.52ms)
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/12" for ::1 at 2016-12-02 15:38:29 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+  Rendered products/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 39ms (Views: 37.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:38:29 -0600
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-02 15:38:31 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[35mProduct Load (0.6ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.28ms)
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/12" for ::1 at 2016-12-02 15:38:49 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+  Rendered products/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 38ms (Views: 35.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:38:49 -0600
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-02 15:38:50 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:38:51 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.39ms)
+Completed 200 OK in 20ms (Views: 14.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/15.json" for ::1 at 2016-12-02 15:38:54 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"15"}
+  [1m[35mProduct Load (0.8ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 15]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.18ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/products/12" for ::1 at 2016-12-02 15:40:16 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+  Rendered products/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 29ms (Views: 27.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:40:16 -0600
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-02 15:40:20 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.28ms)
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/12" for ::1 at 2016-12-02 15:41:20 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 39ms (Views: 37.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:41:20 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:41:20 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:41:20 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:41:20 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:41:20 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:41:20 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:41:20 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:41:21 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:41:21 -0600
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-02 15:41:24 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.32ms)
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:41:28 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 26ms (Views: 24.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:41:32 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.22ms)
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:41:45 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 24ms (Views: 21.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:41:45 -0600
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:41:46 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.29ms)
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:42:52 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 44ms (Views: 40.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:42:52 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:42:52 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:42:52 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:42:52 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:42:52 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:42:53 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:42:53 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:42:53 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:42:53 -0600
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:42:55 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.33ms)
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:43:15 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:43:15 -0600
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:43:17 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.24ms)
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:44:25 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 48ms (Views: 34.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:44:25 -0600
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:44:27 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.5ms)
+Completed 200 OK in 7ms (Views: 3.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:44:43 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 37ms (Views: 33.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:44:43 -0600
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:44:45 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (1.07ms)
+Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:44:58 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 31ms (Views: 29.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:44:58 -0600
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:45:00 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.47ms)
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:45:13 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 54ms (Views: 51.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:45:13 -0600
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:45:13 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:45:14 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:45:14 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:45:14 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:45:14 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:45:14 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:45:14 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:45:14 -0600
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:45:17 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.48ms)
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13" for ::1 at 2016-12-02 15:46:12 -0600
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+  Rendered products/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 49ms (Views: 46.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:46:13 -0600
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-02 15:46:14 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.53ms)
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products" for ::1 at 2016-12-02 15:49:12 -0600
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (1.7ms)[0m  [1mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 74ms (Views: 70.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/products" for ::1 at 2016-12-02 15:49:43 -0600
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.5ms)[0m  SELECT "products".* FROM "products"
+  Rendered products/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 34ms (Views: 32.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-02 15:49:43 -0600
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-02 15:49:44 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.26ms)
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products" for ::1 at 2016-12-03 08:44:30 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.7ms)[0m  SELECT "products".* FROM "products"
+  Rendered products/index.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 506ms (Views: 481.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-03 08:44:31 -0600
+
+
+Started GET "/products" for ::1 at 2016-12-03 08:44:34 -0600
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 127ms (Views: 125.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products" for ::1 at 2016-12-03 08:44:35 -0600
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  Rendered products/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 95ms (Views: 92.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 08:44:37 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.89ms)
+Completed 200 OK in 75ms (Views: 50.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 08:44:37 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.28ms)
+Completed 200 OK in 5ms (Views: 1.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 08:44:38 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.4ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (1.09ms)
+Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 08:44:38 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.41ms)
+Completed 200 OK in 6ms (Views: 1.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-03 08:44:40 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.42ms)
+Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-03 08:44:40 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.3ms)
+Completed 200 OK in 7ms (Views: 2.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 08:44:41 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.42ms)
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 08:44:42 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (1.67ms)
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2016-12-03 08:45:09 -0600
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/Tyler/.rvm/gems/ruby-2.3.1/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (1.1ms)
+Completed 200 OK in 14ms (Views: 12.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/products" for ::1 at 2016-12-03 09:00:05 -0600
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.9ms)[0m  [1mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 201ms (Views: 182.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 09:00:43 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (1.24ms)
+Completed 200 OK in 18ms (Views: 4.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products" for ::1 at 2016-12-03 09:01:45 -0600
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.5ms)[0m  [1mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 72ms (Views: 70.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 09:01:45 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.66ms)
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-03 09:01:45 -0600
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 09:01:47 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.42ms)
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products" for ::1 at 2016-12-03 09:14:43 -0600
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (2.0ms)[0m  SELECT "products".* FROM "products"
+  Rendered products/index.html.erb within layouts/application (49.9ms)
+Completed 200 OK in 211ms (Views: 194.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/products/12.json" for 127.0.0.1 at 2016-12-03 09:14:43 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.5ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (8.02ms)
+Completed 200 OK in 42ms (Views: 35.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/assets/store_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/assets/store_admin.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-12-03 09:14:43 -0600
+
+
+Started GET "/products/12.json" for ::1 at 2016-12-03 09:14:44 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 12]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (1.82ms)
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/13.json" for ::1 at 2016-12-03 09:14:47 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 13]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.84ms)
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/14.json" for ::1 at 2016-12-03 09:14:49 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 14]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.6ms)
+Completed 200 OK in 9ms (Views: 4.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/15.json" for ::1 at 2016-12-03 09:14:51 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"15"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 15]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/16.json" for ::1 at 2016-12-03 09:14:53 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"16"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 16]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.71ms)
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/17.json" for ::1 at 2016-12-03 09:14:54 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"17"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 17]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.51ms)
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/18.json" for ::1 at 2016-12-03 09:14:55 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"18"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 18]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.28ms)
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/19.json" for ::1 at 2016-12-03 09:14:56 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"19"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 19]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/20.json" for ::1 at 2016-12-03 09:14:58 -0600
+Processing by ProductsController#show as JSON
+  Parameters: {"id"=>"20"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 20]]
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Attributes (0.65ms)
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.2ms)

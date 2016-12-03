@@ -30,6 +30,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'active_model_serializers'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -41,6 +43,7 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'selenium-webdriver'
+  gem 'rb-readline'
 end
 
 group :development do
