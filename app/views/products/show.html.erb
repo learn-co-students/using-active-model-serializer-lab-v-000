@@ -3,20 +3,31 @@
 <p class="productInventory"><%= @product.inventory %></p>
 <p class="productPrice"><%= @product.price %></p>
 <p class="productDescription"><%= @product.description %></p>
+<div class="orders">
+  <% if @product.orders %>
+    <% @product.orders.each do |order| %>
+      Order ID#: <p class="productOrdersId"><%= order.id %></p>
+      Created at: <p class="productOrdersCreation"><%= order.created_at %></p>
+    <% end %>
+  <% end %>
+</div>
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/products/" + nextId + ".json", function(data) {
-      $(".productName").text(data["name"]);
-      $(".productPrice").text(data["price"]);
-      $(".productDescription").text(data["description"]);
-      $(".productInventory").text(data["inventory"]);
+      var product = data;
+      $(".productName").text(product["name"]);
+      $(".productPrice").text(product["price"]);
+      $(".productDescription").text(product["description"]);
+      $(".productInventory").text(product["inventory"]);
+      debugger;
+      $(".productOrdersId").text(product["orders"]["id"]);
+      $(".productOrdersCreation").text(product["orders"]["created_at"]);
       // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
+      $(".js-next").attr("data-id", product["id"]);
     });
   });
 });
 </script>
-
