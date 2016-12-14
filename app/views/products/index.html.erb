@@ -11,11 +11,15 @@ $(function() {
     var id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
         var inventoryText = "<strong>Available</strong>";
-        if(data["inventory"] === "0"){
+        if(data["inventory"] === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        debugger
-        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + "<ul>" + "<li>" + data["orders"]["id"] + " created at " + data["orders"]["created_at"] + "</li>" + "</ul>";
+
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + "<ul>";
+        data["orders"].forEach(function(order) {
+          descriptionText +="<li>" + order["id"] + " created at " + order["created_at"] + "</li>";
+        })
+        descriptionText += "</ul>"
         $("#product-" + id).html(descriptionText);
       });
     });
