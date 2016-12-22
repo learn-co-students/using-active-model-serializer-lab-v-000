@@ -6,19 +6,29 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-more").on("click", function() {
+$(function () {
+  $(".js-more").on("click", function(e) {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
+    $.get("/products/" + id + ".json", function(data) {
+      var p = data["product"];
+
+      var inventoryText = "<strong>Available</strong>";
+      if(p['inventory'] <= 0) {
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      var html = "<p>" + p['description'] + "</p><p>" + inventoryText + "</p>";
+      html += "<h4>ORDERS:</h4><ol>";
+      $.each(p['orders'], function( i, v ) {
+        html += "<li>" + v['id'] + ": " + v['created_at'] + ". Products in order: ";
+        $.each(v['products'], function( i, v2 ) {
+          html += v2['name'] + " ";
+        });
+        html += "</li>"
       });
+      html += "</ol>";
+      $("#product-" + id).html(html);
     });
+    // e.preventDefault();
   });
 });
 </script>
