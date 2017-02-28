@@ -46,7 +46,6 @@ RSpec.describe "Products", type: :feature do
       click_button "More Info"
       expect(page).to have_content product.description
       expect(page).to have_content "Sold Out"
-      expect(page).to have_content(product.name, count: 2)
       product.inventory = 1
       product.save
       visit products_path
