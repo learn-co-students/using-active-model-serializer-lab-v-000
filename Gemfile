@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+gem 'active_model_serializers'
+
 
 gem 'pry'
 gem 'pry-nav'
@@ -40,6 +42,7 @@ group :development, :test do
   gem 'capybara'
   gem 'faker'
   gem 'shoulda'
+  gem 'poltergeist'
   gem 'selenium-webdriver'
 end
 
