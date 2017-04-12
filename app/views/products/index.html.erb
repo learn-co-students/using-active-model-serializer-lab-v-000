@@ -12,12 +12,12 @@ $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
-      $.get("/products/" + id + ".json", function(inventory) {
+      $.get("/products/" + id + ".json", function(data) {
         var inventoryText = "<strong>Available</strong>";
-        if(inventory <= 0){
+        if(data.inventory === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + inventory.description + "</p><p>" + inventoryText + "</p>";
+        var descriptionText = "<p>" + data.description + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
       });
         var orders = data['orders']
