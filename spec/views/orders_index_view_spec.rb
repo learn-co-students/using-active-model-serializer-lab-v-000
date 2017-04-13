@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "invoices_index_view" do
+RSpec.describe "invoices_index_view", type: :view do
 
   before do
     products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
