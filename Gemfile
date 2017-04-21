@@ -41,6 +41,9 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'selenium-webdriver'
+  gem 'poltergeist'
+  gem 'active_model_serializers'
+  gem 'rb-readline'
 end
 
 group :development do
