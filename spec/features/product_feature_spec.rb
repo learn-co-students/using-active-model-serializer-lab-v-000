@@ -1,4 +1,5 @@
 require 'rails_helper'
+driver = Selenium::WebDriver.for :chrome
 
 RSpec.describe "Products", type: :feature do
   before do
