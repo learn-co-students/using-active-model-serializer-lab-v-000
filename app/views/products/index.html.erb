@@ -6,19 +6,37 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
+
 $(function() {
+<!-- available when the whole document is ready -->
+
   $(".js-more").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
-    });
-  });
-});
+  <!-- calls function when more info is clicked --> 
+
+  var id = $(this).data("id")
+
+  <!-- sets variable id to product id of clicked item -->
+
+    $.get("/products/" + id + ".json", function(product) {
+
+        <!-- gets json information from page -->
+
+      var inventory = "Available"
+
+        <!-- sets variable to default-->
+
+      if (product["inventory"] < 1){
+        inventory = "Sold Out"
+      }
+
+      var description = " " + product["description"] + " " + inventory + " "
+
+        <!-- sets variable to description string -->
+
+      $("#product-" + id).html(description)
+
+      <!-- adds description to html -->
+    })
+  })
+})
 </script>
