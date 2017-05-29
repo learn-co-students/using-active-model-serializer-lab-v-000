@@ -38,7 +38,7 @@ RSpec.describe "Products", type: :feature do
       customer = Customer.create(:name => Faker::Name.name)
       invoice = Invoice.create
       order = Order.create(customer: customer, invoice: invoice)
-
+      
       order.products << product
       visit products_path
       expect(page).to have_content(product.name, count: 1)
