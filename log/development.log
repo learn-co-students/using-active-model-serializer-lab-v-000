@@ -1601,3 +1601,25 @@ Processing by ProductsController#show as JSON
   [1m[36mOrder Load (0.2ms)[0m  [1mSELECT "orders".* FROM "orders" INNER JOIN "ordered_products" ON "orders"."id" = "ordered_products"."order_id" WHERE "ordered_products"."product_id" = ?[0m  [["product_id", 13]]
   [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products" INNER JOIN "ordered_products" ON "products"."id" = "ordered_products"."product_id" WHERE "ordered_products"."order_id" = ?  [["order_id", 20]]
 Completed 200 OK in 29ms (Views: 25.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products" for ::1 at 2017-06-13 15:25:36 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.8ms)[0m  SELECT "products".* FROM "products"
+  Rendered products/index.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 408ms (Views: 388.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/products" for ::1 at 2017-06-13 15:38:34 -0400
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (2.4ms)[0m  [1mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 64ms (Views: 51.3ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/products" for ::1 at 2017-06-13 15:46:19 -0400
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (1.0ms)[0m  SELECT "products".* FROM "products"
+  Rendered products/index.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 68ms (Views: 61.1ms | ActiveRecord: 1.5ms)
