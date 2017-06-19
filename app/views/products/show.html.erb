@@ -3,6 +3,13 @@
 <p class="productInventory"><%= @product.inventory %></p>
 <p class="productPrice"><%= @product.price %></p>
 <p class="productDescription"><%= @product.description %></p>
+<ol id="productsOrders">
+  <% @product.orders.each do |o| %>
+    <li>Order ID: <%= o.id %><br>
+        Time Of Order: <%= o.created_at %></li>
+        <br>
+  <% end %>
+</ol>
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
