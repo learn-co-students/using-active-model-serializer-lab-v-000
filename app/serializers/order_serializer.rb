@@ -1,4 +1,4 @@
 class OrderSerializer < ActiveModel::Serializer
   attributes :id, :products
-  # has_many :products
+  belongs_to :product
 end
