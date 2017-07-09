@@ -9,16 +9,47 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+    $.get("/products/" + id + ".json", function(data) {
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+        if(data["inventory"] < 1){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+
+        var orders = data["orders"];
+        var orderText = "";
+        if(orders.length){
+          orderText += "orders: <ul>";
+          var i;
+          for (i=0; i<orders.length; i++){
+          orderText += `<li>${orders[i]["id"]} : ${orders[i]["created_at"]}</li>`;
+          }
+          orderText += "</ul>";
+        }
+        $("#product-" + id).append(orderText);
+    });
+  });
+});
+</script>
+
+<!-- <script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + ".json", function(data) {
+      // debugger;
+      $.get("/products/" + id + ".json", function(inventory) {
+        // debugger;
+        var inventoryText = "<strong>Available</strong>";
+        // debugger;
+        if(inventory.inventory === 0){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
       });
     });
   });
 });
-</script>
+</script> -->
