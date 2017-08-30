@@ -9,7 +9,7 @@ $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/products/" + nextId + ".json", function(data) {
-      var product = data;
+      var product = data["product"];
       $(".productName").text(product["name"]);
       $(".productPrice").text(product["price"]);
       $(".productDescription").text(product["description"]);
@@ -20,4 +20,3 @@ $(function () {
   });
 });
 </script>
-
