@@ -3,6 +3,8 @@
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
+  <ul id="product-<%= product.id %>-orders">
+  </ul>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
@@ -16,6 +18,12 @@ $(function() {
         }
         var descriptionText = "<p>" + data['description'] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
+        var orders = data["orders"];
+        var orderList = "";
+        orders.forEach(function(order) {
+          orderList += "Order no: " + order["id"] + ' - created: ' + order["created_at"] + '<br>';
+        });
+        $("#product-" + id + "-orders").html(orderList);  
     });
   });
 });
