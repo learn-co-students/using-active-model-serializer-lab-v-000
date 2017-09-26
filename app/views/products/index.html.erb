@@ -6,6 +6,7 @@
   <ul id="product-<%= product.id %>-orders">
   </ul>
 <% end %>
+
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
@@ -13,14 +14,14 @@ $(function() {
     $.get("/products/" + id + ".json", function(data) {
       var product = data;
       var inventoryText = "<strong>Available</strong>";
-      if(product["inventory"] === 0){
-        inventoryText = "<strong>Sold Out</strong>";
-      }
-      var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
-      $("#product-" + id).html(descriptionText);
-      var orders = product["orders"];
-      var orderList = "";
-      orders.forEach(function(order) {
+        if(product["inventory"] === 0 ){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + product["description"]+ "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+        var orders = product["orders"];
+        var orderList = "";
+        orders.forEach(function(order) {
         orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
       });
       $("#product-" + id + "-orders").html(orderList);
