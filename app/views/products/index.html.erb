@@ -15,7 +15,13 @@
           if(data["inventory"] === 0){
             inventoryText = "<strong>Sold Out</strong>";
           }
-          var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+          var orders = ""
+          for (var i = 0, len = data.orders.length; i < len; i++) {
+            debugger
+            orders += "<p>Order Id: " + data.orders[i].id + " Created At: " + data.orders[i].created_at + "</p>";
+          }
+          var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + orders;
+
           $("#product-" + id).html(descriptionText);
       });
     });
