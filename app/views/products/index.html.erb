@@ -3,29 +3,43 @@
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate product.description %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
+  <ul id="product-<%= product.id %>-orders">
+  </ul>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
+    $.get("/products/" + id + ".json", function(json) {
 
-    $.getJSON("/products/" + id + ".json", function(json) {
+      var inventoryText = "<strong>Sold Out</strong>";
+      if (json["inventory"] > 0) { inventoryText = "<strong>Available</strong>"; };
 
-      var inventory_status = "Sold Out";
-      if (json["inventory"] > 0) { inventory_status = "Available"; };
 
-      var orders = "";
+      var orderList = "";
 
-      for (var order of json["orders"]) {
-        orders += ("<br>Id: " + order["id"] + "<br>Date: " + order["created_at"]);
-      };
+      json["orders"].forEach(function(order) {
+        orderList += "<br>Id: " + order["id"] + "<br>Date: " + order["created_at"];
+      });
+
+      // forEach() supports whatever legacy browser is used by the phantomjs engine for the test
+
+      // For...of is only supported in Chrome
+      // for (var order of json["orders"]) {
+      //   orderList += ("<br>Id: " + order["id"] + "<br>Date: " + order["created_at"]);
+      // };
+
+      // For...Each...In loops are supported in both Chrome and Firefox
+      // for each (var order in json["orders"]) {
+      //   orderList += ("<br>Id: " + order["id"] + "<br>Date: " + order["created_at"]);
+      // };
 
       $("#product-" + id).html(
-        "<p>" + json["description"] + "<p></p>" +
-        "Inventory: " + inventory_status + "<p></p>" +
-        "Orders:" + orders
-      );
+        "<p>" + json["description"] + "</p><p>" +
+        "Inventory: " + inventoryText + "</p><p>" +
+        "Orders:" + orderList + "</p>");
+
     });
   });
 });
