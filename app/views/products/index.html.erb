@@ -14,13 +14,12 @@ $(function() {
     $.get("/products/" + id + ".json", function(json) {
 
       var inventoryText = "<strong>Sold Out</strong>";
-      if (json["inventory"] > 0) { inventoryText = "<strong>Available</strong>"; };
-
+      if ( json.inventory > 0) { inventoryText = "<strong>Available</strong>"; };
 
       var orderList = "";
 
-      json["orders"].forEach(function(order) {
-        orderList += "<br>Id: " + order["id"] + "<br>Date: " + order["created_at"];
+      json.orders.forEach(function(order) {
+        orderList += "<br>Id: " + order.id + "<br>Date: " + order.created_at;
       });
 
       // forEach() supports whatever legacy browser is used by the phantomjs engine for the test
@@ -36,7 +35,7 @@ $(function() {
       // };
 
       $("#product-" + id).html(
-        "<p>" + json["description"] + "</p><p>" +
+        "<p>" + json.description + "</p><p>" +
         "Inventory: " + inventoryText + "</p><p>" +
         "Orders:" + orderList + "</p>");
 
