@@ -1,7 +1,7 @@
 <h1>Products</h1>
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
-  <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <div id="product-<%= product.id %>"><%= truncate product.description %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
@@ -9,15 +9,23 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+
+    $.getJSON("/products/" + id + ".json", function(json) {
+
+      var inventory_status = "Sold Out";
+      if (json["inventory"] > 0) { inventory_status = "Available"; };
+
+      var orders = "";
+
+      for (var order of json["orders"]) {
+        orders += ("<br>Id: " + order["id"] + "<br>Date: " + order["created_at"]);
+      };
+
+      $("#product-" + id).html(
+        "<p>" + json["description"] + "<p></p>" +
+        "Inventory: " + inventory_status + "<p></p>" +
+        "Orders:" + orders
+      );
     });
   });
 });
