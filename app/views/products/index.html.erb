@@ -11,7 +11,7 @@ $(function() {
     var id = $(this).data("id");
     $.getJSON("/products/" + id + ".json", function(data) {
       var inventoryText = "<strong>Available</strong>"
-      if (data["inventory"] === "0"){
+      if (data["inventory"] === 0){
         inventoryText = "<strong>Sold Out</strong>"
       }
       var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>"
@@ -22,6 +22,6 @@ $(function() {
 });
 </script>
 
-// update the fucking file already git
+
 
 
