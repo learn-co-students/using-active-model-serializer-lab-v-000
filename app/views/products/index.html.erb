@@ -2,6 +2,8 @@
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <ul id="product-<%= product.id %>-orders">
+  </ul>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
@@ -17,6 +19,14 @@ $(function() {
       }
       var descriptionText = "<p>" + json.description + "</p><p>" + inventoryText + "</p>";
       $("#product-" + id).html(descriptionText);
+
+      var orders = json.orders
+      var orderList = ""
+      orders.forEach(function (order) {
+
+        orderList += '<li class="js-order" data-id="' + order.id + '">' + "Order Number " + order.id + ', made at ' + order.created_at + '</li>';
+      })
+      $("#product-" + id + "-orders").html(orderList);
     });
   });
 });
