@@ -40,7 +40,9 @@ group :development, :test do
   gem 'capybara'
   gem 'faker'
   gem 'shoulda'
-  gem 'poltergeist', '~> 1.14.0'end
+  gem 'poltergeist', '~> 1.14.0'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
+end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -49,3 +51,5 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+gem 'active_model_serializers'
