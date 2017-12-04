@@ -8,3 +8,21 @@
   </tr>
   <%= render(@orders) || "No Orders" %>
 </table>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/orders/" + id + ".json", function(description) {
+      $.get("/orders/" + id + ".json", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#orders-" + id).html(descriptionText);
+      });
+    });
+  });
+});
+</script>
