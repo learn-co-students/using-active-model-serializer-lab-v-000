@@ -13,7 +13,10 @@ RSpec.describe ProductsController, type: :controller do
 
     it 'creates a new product' do
       post :create, product: @product_attributes
-      expect(response).to redirect_to(products_path)
+      #i commented out - lab specifies that the successful creation render
+      # on the #new page without refreshing\
+      #from page: "Display the product details of the newly created product on the new page without refreshing or redirecting."
+      # expect(response).to redirect_to(products_path)
       expect(Product.count).to eq 1
     end
 
