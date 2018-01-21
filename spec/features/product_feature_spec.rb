@@ -44,6 +44,9 @@ RSpec.describe "Products", type: :feature do
       expect(page).to have_content(product.name, count: 1)
       expect(page).not_to have_content product.description
       click_button "More Info"
+
+      # raise NameError, page.driver.browser.manage.logs.get(:browser).to_a
+
       expect(page).to have_content product.description
       expect(page).to have_content "Sold Out"
       product.inventory = 1
