@@ -3,19 +3,27 @@
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
+  <ul id="product-<%= product.id %>-orders">
+  </ul>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.getJSON("/products/" + id + ".json", function(data) {
+    $.get("/products/" + id + ".json", function(data) {
         var inventoryText = "<strong>Available</strong>";
         if (data["inventory"] < 1){
           inventoryText = "<strong>Sold Out</strong>";
         }
         var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
+        var orders = data["orders"];
+        var orderList = "";
+        orders.forEach(function(order) {
+        orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
+        });
+        $("#product-" + id + "-orders").html(orderList);
     });
   });
 });
