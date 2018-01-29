@@ -1,0 +1,33 @@
+<a href="#" data-id="<%= @order.id %>" class="js-next">Next...</a>
+<h1>Order #<span class="orderId"><%= @order.id %></span></h1>
+<p class="createdAt"><%= @order.created_at %></p>
+<div class="orderProducts">
+  <ul>
+    <% @order.products.each do |product| %> 
+      <li><%= product.name %>, <%= number_to_currency(product.price) %>, Inventory: <%= product.inventory %></li>
+    <% end %>
+  </ul>
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function(){
+    $(".js-next").on("click", function(){
+      var nextId = parseInt($('.js-next').attr("data-id")) + 1;
+      $(".js-next").attr("data-id", nextId);
+      $.get("/orders/" + nextId + ".json", function(data){
+        var order = data["order"];
+        $(".orderId").text(order["id"]);
+        $(".createdAt").text(order["created_at"]);
+        $(".orderProducts li").remove();
+        var list = $(".orderProducts ul");
+        for (i = 0 ; i < order["products"].length ; i++) {
+          var product = order["products"][i];
+          var productListItem = '<li>' + product["name"] + ', $' + product["price"] + ', Inventory: ' + product["inventory"] + '</li>';
+          $(list).append(productListItem);
+        }
+      });
+    });
+    
+  });
+</script>
