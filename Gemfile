@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+gem 'chromedriver-helper'
+gem 'active_model_serializers'
 
 gem 'pry'
 gem 'pry-nav'
