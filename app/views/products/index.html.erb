@@ -14,18 +14,18 @@ $(function() {
       if(data["inventory"] === 0){
         inventoryText = "<strong>Sold Out</strong>";
       }
-      // var ordersText = "<ul>";
-      // if(data["orders"]) {
-      //   for (let order of data["orders"]) {
-      //     let liText = "<li><p>Order number: " + order["id"] + "</p><p>Created at: " + order["created_at"] + "</p></li>";
-      //     ordersText += liText;
-      //   }
-      //   ordersText += "</ul>";
-      // } else {
-      //   ordersText = "";
-      // }
+      var ordersText = "<ul>";
+      if(data["orders"]) {
+        for (let order of data["orders"]) {
+          let liText = "<li><p>Order number: " + order["id"] + "</p><p>Created at: " + order["created_at"] + "</p></li>";
+          ordersText += liText;
+        }
+        ordersText += "</ul>";
+      } else {
+        ordersText = "";
+      }
 
-      var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+      var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + ordersText;
       $("#product-" + id).html(descriptionText);
     });
   });
