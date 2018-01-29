@@ -7,4 +7,9 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
+
+  config.color = true
+
+  Selenium::WebDriver::Firefox::Binary.path =
+  "/home/nathaniel/firefox-sdk//bin/firefox"
 end
