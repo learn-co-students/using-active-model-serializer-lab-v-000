@@ -9,15 +9,18 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+    $.get("/products/" + id + ".json", function(response) {
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+        if(response.inventory === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+        var descriptionText = "<p>" + response.description + "</p><p>" + inventoryText + "</p>";
+        var orderText = ""
+        for(var i = 0; i < response.orders.length; i++) {
+          orderText += "<p>Order Number " + response.orders[i].id +"</p><p>" + response.orders[i].created_at + "</p>"
+        }
+
+        $("#product-" + id).html(descriptionText + orderText);
     });
   });
 });
