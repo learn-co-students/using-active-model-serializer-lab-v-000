@@ -23,11 +23,13 @@ class ProductsController < ApplicationController
   end
 
   def show
+    # binding.pry
     @product = Product.find(params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @product.to_json(only: [:id, :name, :description, :price, :inventory])}
+      format.json { render json: @product, status: 200}
     end
+    # render json: @product, status: 200
   end
 
   private
