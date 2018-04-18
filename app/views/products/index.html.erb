@@ -9,16 +9,30 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+    $.get("/products/" + id + ".json", function(description) {
+      $.get("/products/" + id + ".json", function(inventory) {
+        $.get("/products/" + id + ".json", function(orders) {
+          var ordersInfo = "";
+          var orderProducts = "";
+          if (orders["orders"].length > 0) {
+            orders["orders"].forEach(function(order){
+              order["products"].forEach(function(product){
+                orderProducts += " +1 " + product["name"]
+              })
+              ordersInfo += "Order ID: " + order["id"] + " - " + order["created_at"] + " - " + orderProducts + "<br>"
+            })
+          } else {
+            ordersInfo += "No orders currently"
+          }
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+        if(inventory["inventory"] < 1){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        var descriptionText = "<p>" + description["description"] + "</p><p>" + inventoryText + "</p><p>" + ordersInfo + "</p>";
         $("#product-" + id).html(descriptionText);
       });
     });
   });
+});
 });
 </script>
