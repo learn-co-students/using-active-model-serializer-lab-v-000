@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head>
+  <title>RailsLayoutsAndTemplatesLab</title>
+  <link rel="stylesheet" media="all" href="/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" data-turbolinks-track="true">
+  <script src="/assets/application-567c60b615d5a6e9df6afc4136e6d65700f8b422df9e8c713e14e17db5babf8e.js" data-turbolinks-track="true"></script>
+  
+</head>
+<body>
+
+<h1>Flatiron Widgets Store</h1>
+
+
+<h1>Products</h1>
+  <h3>Test Product</h3>
+  <div id="product-2247">This is a test description ...</div>
+  <button class="js-more" data-id="2247">More Info</button>
+  <ul id="product-2247-orders">
+  </ul>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + ".json", function(data) {
+      var product = data;
+      var inventoryText = "<strong>Available</strong>";
+      if(product["inventory"] === 0){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
+      $("#product-" + id).html(descriptionText);
+      var orders = product["orders"];
+      var orderList = "";
+      orders.forEach(function(order) {
+        orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
+      });
+      $("#product-" + id + "-orders").html(orderList);
+    });
+  });
+});
+</script>
+
+
+
+</body></html>
