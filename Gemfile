@@ -49,3 +49,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+# Added at 2018-05-26 11:10:15 -0400 by learn:
+gem "active_model_serializers", "~> 0.10.7"
