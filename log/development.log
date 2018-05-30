@@ -2017,3 +2017,7 @@ Processing by ProductsController#inventory as */*
   [1m[35mProduct Load (0.1ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 21]]
   Rendered text template (0.0ms)
 Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products"  ORDER BY "products"."id" ASC LIMIT 1[0m
+  [1m[35mOrder Load (0.1ms)[0m  SELECT "orders".* FROM "orders" INNER JOIN "ordered_products" ON "orders"."id" = "ordered_products"."order_id" WHERE "ordered_products"."product_id" = ?  [["product_id", 21]]
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products"  ORDER BY "products"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "orders" INNER JOIN "ordered_products" ON "orders"."id" = "ordered_products"."order_id" WHERE "ordered_products"."product_id" = ?  [["product_id", 21]]
