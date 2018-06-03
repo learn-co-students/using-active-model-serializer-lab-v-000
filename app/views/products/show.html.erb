@@ -1,22 +1,41 @@
-<a href="#" class="js-next" data-id="<%=@product.id%>">Next Product</a>
-<h1 class="productName"><%= @product.name %></h1>
-<p class="productInventory"><%= @product.inventory %></p>
-<p class="productPrice"><%= @product.price %></p>
-<p class="productDescription"><%= @product.description %></p>
+<a href="#" id="js-prev" data-id="<%=@product.id%>">Previous</a>
+<%= link_to "Products", products_path %>
+<a href="#" id="js-next" data-id="<%=@product.id%>">Next Product</a>
+<div id="product-<%= @product.id %>" data-id="<%= @product.id %>">
+  <h1 class="productName"><%= @product.name %></h1>
+  <p class="productInventory"><%= @product.inventory %></p>
+  <p class="productPrice"><%= @product.price %></p>
+  <p class="productDescription"><%= @product.description %></p>
+</div>
 
 <script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/products/" + nextId + ".json", function(data) {
-      $(".productName").text(data["name"]);
-      $(".productPrice").text(data["price"]);
-      $(".productDescription").text(data["description"]);
-      $(".productInventory").text(data["inventory"]);
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
-    });
-  });
-});
-</script>
+  $(function () {
 
+    $("#js-next").on("click", function(e) {
+      e.preventDefault();
+      const nextId = $("#js-next").data("id") + 1;
+      $.getJSON("/products/" + nextId + ".json", function(data) {
+        $("#js-prev").data("id", (data.id-1));
+        updateProduct(data);
+        $("#js-next").data("id", data.id);
+      });
+    });
+
+    $("#js-prev").on("click", function(e) {
+      e.preventDefault();
+      const prevId = $("#js-prev").data("id") - 1;
+      $.getJSON("/products/"+prevId+".json", function(data) {
+        $("#js-next").data("id", (data.id+1));
+        updateProduct(data);
+        $("#js-prev").data("id", data.id);
+      })
+    })
+  });
+
+  function updateProduct(data) {
+    $(".productName").text(data.name);
+    $(".productPrice").text(data.price);
+    $(".productDescription").text(data.description);
+    $(".productInventory").text(data.inventory);
+  }
+</script>
