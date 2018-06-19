@@ -9,16 +9,36 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
-    });
+    $.get("/products/" + id + ".json", function(details){
+      var inventoryText = "<strong>Available</strong>";
+      if(details["inventory"] == "0"){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+
+      var ordersList = "ORDERS <ul>"
+
+      if (details["orders"] !== undefined && details["orders"].length > 0){
+        details["orders"].forEach(function(order){
+          ordersList += "<li>" + order["id"]+order["created_at"]+"</li>"
+        });
+      }
+
+      ordersList +="</ul>"
+      var detailText = "<p>" + details["description"] + "</p><p>" + inventoryText + "</p>" + ordersList;
+      $("#product-"+id).html(detailText);
+
+    })
+    //
+    // $.get("/products/" + id + "/description", function(description) {
+    //   $.get("/products/" + id + "/inventory", function(inventory) {
+    //     var inventoryText = "<strong>Available</strong>";
+    //     if(inventory === "false"){
+    //
+    //     }
+    //     var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+    //     $("#product-" + id).html(descriptionText);
+    //   });
+    // });
   });
 });
 </script>
