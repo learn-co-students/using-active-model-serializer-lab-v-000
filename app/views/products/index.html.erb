@@ -9,18 +9,20 @@
 <script type="text/javascript">
   $(function(){
     $(".js-more").on("click", function(){
-      const id = $(this).data("id")
+      var id = $(this).data("id")
       $.get("/products/" + id + ".json", function(data){
-        let inventoryText = "<strong>Available</strong>"
+        var inventoryText = ""
         if (data["inventory"] === 0){
           inventoryText = "<strong>Sold Out</strong>"
+        } else {
+          inventoryText = "<strong>Available</strong>"
         }
-        let orderList = "<ul>"
+        var orderList = "<ul>"
         data["orders"].forEach(function(el){
-          orderList += "<li>" + el["id"] + "-" + el["created_at"] + "</li>"
+          orderList += "<li>" + "<strong>Order ID:</strong>" + el["id"] + " " + "<strong>Time:</strong>" + el["created_at"] + "</li>"
         })
         orderList += "</ul>"
-        const descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + orderList
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + orderList
         $("#product-" + id).html(descriptionText)
       })
     })
