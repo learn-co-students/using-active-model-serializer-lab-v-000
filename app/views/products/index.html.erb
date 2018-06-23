@@ -8,16 +8,13 @@
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
+    // I don't understand why let doesn't work but var does in line 12
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+    $.get("/products/" + id + ".json", function(response) {
+      descriptionText = "<p>" + response["description"] + "</p>";
+      inventoryText = (response["inventory"] === 0) ? "Sold Out" : "Available";
+      productText = descriptionText + "<p><strong>" + inventoryText + "</strong></p>";
+      $("#product-" + id).html(productText);
     });
   });
 });
