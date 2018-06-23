@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head>
+  <title>RailsLayoutsAndTemplatesLab</title>
+  <link rel="stylesheet" media="all" href="/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" data-turbolinks-track="true">
+  <script src="/assets/application-0f4624cd5838f7070bbce1eb809d8bd0e17844c8da48418d119123d3df0fd46a.js" data-turbolinks-track="true"></script>
+  
+</head>
+<body>
+
+<h1>Flatiron Widgets Store</h1>
+
+
+<h1>Products</h1>
+  <h3>Test Product</h3>
+  <div id="product-2752">This is a test description ...</div>
+  <button class="js-more" data-id="2752">More Info</button>
+  <ul id="product-2752-orders"></ul>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    const id = $(this).data("id");
+    $.get("/products/" + id + ".json", function(data) {
+      let productText = "<p>" + data.description + "</p>";
+      $("#product-" + id).html(productText);
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>
