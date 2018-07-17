@@ -1,7 +1,7 @@
 # Using ActiveModel::Serializer Lab
 
 ## Objectives
-  
+
   1. Use AMS to render JSON.
   2. Use AMS to render JSON associations.
 
@@ -18,7 +18,7 @@ Latin practice!
 
 1. Create an ActiveModel::Serializer for `Product` and update the
    `products_controller` to use the new serializer in place of the
-existing `to_json` code.
+existing `to_json` code
 2. Update the product show page to handle the new JSON.
 3. On the products `index` page, update the `More Info` button so that it
    uses the `/products/id.json` route to get both description and
