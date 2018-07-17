@@ -9,15 +9,23 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+    $.get("/products/" + id + ".json", function(data) {
+      console.log(data);
+        var description = data["description"];
+        var inventory = data["inventory"];
+        var orders = data["orders"]
+        var orderString = "Orders: "
+        orders.forEach(function(order) {
+          orderString += ("Order id: " + order["id"] + "<br>")
+          orderString += ("Created at: " + order["created_at"] +"<br>")
+        });
+
+        var inventoryText = "<strong>Sold Out</strong>";
+        if(inventory  >= 1){
+          inventoryText = "<strong>Available</strong>";}
+
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + " " + "<br>" + orderString + "</p>";
         $("#product-" + id).html(descriptionText);
-      });
     });
   });
 });
