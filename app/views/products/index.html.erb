@@ -2,22 +2,33 @@
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <ul id="product-<%= product.id %>-orders">
+  </ul>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
+
+
+<!-- Update the More Info button on the products index page to show a list of orders with id and created_at in addition to the description and inventory. -->
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
+    $.get("/products/" + id + ".json", function(data) {
+      var inventoryText = "<strong>Available</strong>";
+      // debugger;
+      if(data["inventory"] < 1){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      var dataText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+      $("#product-" + id).html(dataText);
+
+      var orders = data["orders"];
+      var orderList = "";
+      orders.forEach(function(order) {
+        orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
       });
+      $("#product-" + id + "-orders").html(orderList).prepend("<h3>Orders</h3>");
     });
   });
 });
