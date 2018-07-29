@@ -9,22 +9,21 @@
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
-    const id = $(this).data("id");
-    
-    // Get Description/Inventory Info
+    var id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
-      const description = data["description"];
-      const inventory = data["inventory"] > 0 ? "Available" : "Sold Out";
-      const fullInfo = description + " || " + inventory;
-      $("#product-" + id).text(fullInfo);
-
-      // Get Order Info
-      const orders = data["orders"];
-      let list = "";
+      var product = data;
+      var inventoryText = "<strong>Available</strong>";
+      if(product["inventory"] === 0){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
+      $("#product-" + id).html(descriptionText);
+      var orders = product["orders"];
+      var orderList = "";
       orders.forEach(function(order) {
-        list += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
+        orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
       });
-      $("#product-" + id + "-orders").html(list);
+      $("#product-" + id + "-orders").html(orderList);
     });
   });
 });
