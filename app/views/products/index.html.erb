@@ -10,16 +10,18 @@ $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
     $.get("/products/" + id + '.json', function(data) {
-      inventory = data['inventory'] > 0 ? 'Available' : 'Sold Out';
+      var inventory = 'Available';
+      if (data['inventory'] === 0){
+         inventory = 'Sold Out';
+      }
         var descriptionText = "<p>" + data['description'] + "</p><p>" + inventory + "</p>";
         $("#product-" + id).html(descriptionText);
         var orders = "";
-        product["orders"].forEach(function(order){
+        data["orders"].forEach(function(order){
           orders += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
         });
-        $("#product-" + id).html(orders);
+        $("#product-" + id + "-orders").html(orders);
       });
     });
   });
-});
 </script>
