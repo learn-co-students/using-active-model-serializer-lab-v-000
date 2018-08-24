@@ -1,7 +1,8 @@
 <h1>Products</h1>
 <% @products.each do |product| %>
-  <h3><%= product.name %></h3>
+  <h3><%=  product.id %>: <%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <ul id="order-list-<%= product.id %>"></ul>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
@@ -9,16 +10,25 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+      $.get("/products/" + id + ".json", function(data) {
+
+        var inventoryText = "<b>Available</b>"
+        if(data["inventory"] === 0){
+          var inventoryText = "<b>Sold Out</b>"
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+      $("#product-" + id).html(descriptionText);
+      
+       data["orders"].forEach(x => { 
+          var created = x["created_at"] + "<br><br>"
+          var order_id = x["id"]
+          $("#order-list-" + id).html(`<li>${created}</li><li>${order_id}</li>`)
+          })
     });
   });
 });
 </script>
+
+
+
