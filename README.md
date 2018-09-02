@@ -1,7 +1,7 @@
 # Using ActiveModel::Serializer Lab
 
 ## Objectives
-  
+
   1. Use AMS to render JSON.
   2. Use AMS to render JSON associations.
 
@@ -34,3 +34,21 @@ description and inventory.
 7. Get rid of the unused `/products/id/description` and
    `/products/id/inventory` routes.
 8. Make sure tests pass!
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + ".json", function(data) {
+      $.get("/products/" + id + ".json", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(data["inventory"] === "0"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+      });
+    });
+  });
+});
+</script>
