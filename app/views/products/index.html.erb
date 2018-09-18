@@ -9,16 +9,35 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+     $.get("/products/" + id + ".json", function(data) {
+        var product = data /* data = hash with id, name, description, price, and inventory */
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+         if(product["inventory"] === 0){
+           inventoryText = "<strong>Available</strong>";
+         }
+         var descriptionText = '<p>' + product["description"] + "</p><p>" + '</p>';
+         $("#product-" + id).html(descriptionText);
     });
   });
 });
 </script>
+
+<script>
+$(".productName").text(data["name"]);
+      $(".productPrice").text(data["price"]);
+      $(".productDescription").text(data["description"]);
+      $(".productInventory").text(data["inventory"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+      </script>
+
+
+<!-- $.get("/products/" + id + "/description", function(description) {
+  $.get("/products/" + id + "/inventory", function(inventory) {
+    var inventoryText = "<strong>Available</strong>";
+    if(inventory === "false"){
+      inventoryText = "<strong>Sold Out</strong>";
+    }
+    var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+    $("#product-" + id).html(descriptionText);
+  }); -->
