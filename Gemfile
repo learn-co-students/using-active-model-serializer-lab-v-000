@@ -30,6 +30,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'active_model_serializers'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -40,7 +42,10 @@ group :development, :test do
   gem 'capybara'
   gem 'faker'
   gem 'shoulda'
-  gem 'poltergeist', '~> 1.14.0'end
+  gem 'poltergeist', '~> 1.14.0'
+  gem 'thin'
+end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
