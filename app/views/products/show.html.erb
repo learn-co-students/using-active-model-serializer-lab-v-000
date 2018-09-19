@@ -9,14 +9,14 @@ $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/products/" + nextId + ".json", function(data) {
-      $(".productName").text(data["name"]);
-      $(".productPrice").text(data["price"]);
-      $(".productDescription").text(data["description"]);
-      $(".productInventory").text(data["inventory"]);
+      var product = data;
+      $(".productName").text(product["name"]);
+      $(".productPrice").text(product["price"]);
+      $(".productDescription").text(product["description"]);
+      $(".productInventory").text(product["inventory"]);
       // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
+      $(".js-next").attr("data-id", product["id"]);
     });
   });
 });
 </script>
-
