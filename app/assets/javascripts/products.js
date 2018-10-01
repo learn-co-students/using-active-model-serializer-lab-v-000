@@ -4,7 +4,7 @@ $(function() {
     $.get("/products/" + id + ".json", function(product) {
       var inventoryText = "<strong>Available</strong>";
       debugger
-      if(product["inventory"] === "false"){
+      if(product["inventory"] === 0){
         inventoryText = "<strong>Sold Out</strong>";
       }
       var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
