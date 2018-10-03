@@ -6,19 +6,43 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-more").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
+  $(function() {
+    $(".js-more").on("click", function(e) {
+      e.preventDefault();
+
+      var button = this;
+      var id = $(this).data("id");
+
+      $.get("/products/" + id + ".json", function(data){
+        var inventoryText = data["inventory"] > 0 ? 
+          "<strong>Available</strong>" : 
+          "<strong>Sold Out</strong>";
+        var productText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+
+        if (data["orders"] && data["orders"].length > 0){
+          var ordersTable = "<table><caption>Orders</caption>"
+            ordersTable += "<thead>";
+              ordersTable += "<tr><th>Id</th><th>Created At</th></tr>"
+            ordersTable += "</thead>";
+            ordersTable += "<tbody>";
+              // old school loop needed to pass tests because Capybara does not support ES6
+              // otherwise, would use for..of
+              for (var i = 0, len = data["orders"].length; i < len; i++){
+                ordersTable += "<tr>";
+                ordersTable += "<th scope='row'>" + data["orders"][i]["id"] + "</th>";
+                ordersTable += "<td>" + data["orders"][i]["created_at"] + "</td>";
+                ordersTable += "</tr>";
+              }
+            ordersTable += "</tbody>";
+          ordersTable += "</table>";
+
+          productText += ordersTable;
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
+
+        $('#product-' + id).html(productText);
+
+        button.remove();
       });
     });
   });
-});
 </script>
