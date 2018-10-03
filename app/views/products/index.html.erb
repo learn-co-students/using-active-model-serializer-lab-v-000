@@ -10,14 +10,34 @@
     $(".js-more").on("click", function(e) {
       e.preventDefault();
 
-      const button = this;
+      var button = this;
       var id = $(this).data("id");
 
       $.get("/products/" + id + ".json", function(data){
-        const inventoryText = data["inventory"] > 0 ? 
+        var inventoryText = data["inventory"] > 0 ? 
           "<strong>Available</strong>" : 
           "<strong>Sold Out</strong>";
-        const productText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+        var productText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+
+        if (data["orders"] && data["orders"].length > 0){
+          var ordersTable = "<table><caption>Orders</caption>"
+            ordersTable += "<thead>";
+              ordersTable += "<tr><th>Id</th><th>Created At</th></tr>"
+            ordersTable += "</thead>";
+            ordersTable += "<tbody>";
+              // old school loop needed to pass tests because Capybara does not support ES6
+              // otherwise, would use for..of
+              for (var i = 0, len = data["orders"].length; i < len; i++){
+                ordersTable += "<tr>";
+                ordersTable += "<th scope='row'>" + data["orders"][i]["id"] + "</th>";
+                ordersTable += "<td>" + data["orders"][i]["created_at"] + "</td>";
+                ordersTable += "</tr>";
+              }
+            ordersTable += "</tbody>";
+          ordersTable += "</table>";
+
+          productText += ordersTable;
+        }
 
         $('#product-' + id).html(productText);
 
