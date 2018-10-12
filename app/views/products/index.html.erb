@@ -10,14 +10,14 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + ".json", function(data) {
-        var inventoryText = "<strong>Available</strong>";
-        if(data["inventory"] === "false"){
+    $.get("/products/" + id + ".json", function(product) {
+        var inventoryText = `<strong>Available - ${product["inventory"]}</strong>`;
+        if(product["inventory"] === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var orderArray = data["orders"].map(function(order) {return `<li>${order["id"]} - ${order["created_at"]}</li>`})
+        var orderArray = product["orders"].map(function(order) {return `<li>${order["id"]} - ${order["created_at"]}</li>`})
         var orderText = "<ul>" + orderArray.join(" ")  + "</ul>"
-        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + orderText;
+        var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>" + orderText;
         $("#product-" + id).html(descriptionText);
     });
   });
