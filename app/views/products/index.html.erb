@@ -15,6 +15,7 @@ $(function() {
         if(data["inventory"] === "false"){
           inventoryText = "<strong>Sold Out</strong>";
         }
+        var orderText = "<ul>" <%data["orders"].map(function(order) {return `<li>${order["id"]} - ${order["created_at"]}</li>`})%> "</ul>"
         var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
     });
