@@ -9,16 +9,26 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
+    $.get("/products/" + id + ".json", function(data) {
+      var product = data;
+     var inventoryText = "<strong>Available</strong>";
+     if(product["inventory"] === 0){
+       inventoryText = "<strong>Sold Out</strong>";
+      }
+     var orders = product["orders"];
+     var orderList = "";
+     orders.forEach(function(order) {
+         orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
       });
+
+    var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>" + orderList;
+    $("#product-" + id).html(descriptionText);
+
     });
   });
 });
 </script>
+
+// <!-- var orderArray = product["orders"].map(function(order) {return `<li class="js-order" data-id="' + order["id"] + '">${order["id"]} - ${order["created_at"]}</li>`})
+// <li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>
+// var orderText = "<ul>" + orderArray.join(" ")  + "</ul>" -->
