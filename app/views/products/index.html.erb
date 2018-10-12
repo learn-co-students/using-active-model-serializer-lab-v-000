@@ -8,17 +8,17 @@
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
-    var id = $(this).data("id");
+    let id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
-      var product = data;
-      var inventoryText = "<strong>Available</strong>";
+      let product = data;
+      let inventoryText = "<strong>Available</strong>";
       if(product["inventory"] === 0){
         inventoryText = "<strong>Sold Out</strong>";
       }
-      var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
+      let descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
       $("#product-" + id).html(descriptionText);
-      var orders = product["orders"];
-      var orderList = "";
+      let orders = product["orders"];
+      let orderList = "";
       orders.forEach(function(order) {
         orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
       });
