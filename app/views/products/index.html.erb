@@ -15,8 +15,9 @@ $(function() {
         if(data["inventory"] === "false"){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var orderText = "<ul>" <%data["orders"].map(function(order) {return `<li>${order["id"]} - ${order["created_at"]}</li>`})%> "</ul>"
-        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+        var orderArray = data["orders"].map(function(order) {return `<li>${order["id"]} - ${order["created_at"]}</li>`})
+        var orderText = "<ul>" + orderArray.join(" ")  + "</ul>"
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + orderText;
         $("#product-" + id).html(descriptionText);
     });
   });
