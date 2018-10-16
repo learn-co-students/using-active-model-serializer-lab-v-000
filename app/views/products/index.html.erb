@@ -2,9 +2,39 @@
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <% if !product.orders.empty? %>
+    <p>Orders Placed for Product:</p>
+    <ul id="product-<%= product.id %>-orders">
+    </ul>
+  <% end %>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function(){
+    var id = $(this).data("id"); // stores the value of the <button>'s data-id property = the product's id
+    var $ul = $("#product-" + id + "-orders");
+
+    $.get("/products/" + id + ".json", function(productData){
+      var inventoryText = "<strong>Available</strong>";
+      if(productData["inventory"] === 0){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      var productInfo = "<p>" + productData["description"] + "</p><p>" + inventoryText + "</p>";
+      $("#product-" + id).html(productInfo);
+
+      if(productData["orders"].length > 0){
+        productData["orders"].forEach(function(order){
+          $ul.append("<li>" + "Order #" + order.id + ", placed on " + order.created_at + "</li>");
+        })
+      }
+    });
+  });
+});
+</script>
+
+<!-- Earlier version:
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
@@ -22,3 +52,4 @@ $(function() {
   });
 });
 </script>
+-->
