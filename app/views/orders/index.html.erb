@@ -1,10 +1,24 @@
 <h2>Open Orders</h2>
-<table>
-  <tr>
-    <th>Order Id</th>
-    <th>Product
-    <th>Price
-    <th>Customer</th>  
-  </tr>
-  <%= render(@orders) || "No Orders" %>
-</table>
+
+<%= render(@orders) || "No Orders" %>
+<!-- Implicitly renders app/views/orders/_order.html.erb partial view file
+once for each order instance in @orders AR::Relation of order instances,
+using each order instance as the value of the local variable order in the partial -->
+
+<script type="text/javascript" charset="utf-8">
+$(function(){
+  $(".js-products").on("click", function(e){
+    e.preventDefault();
+    var id = $(this).attr("data-id"); // the value of the <a>'s data-id attribute = the order's id
+    var $ul = $("#order-" + id + "-products");
+    $.get("/orders/" + id + ".json", function(orderObject){
+      if(orderObject["products"].length > 0){
+        orderObject["products"].forEach(function(productObject){
+          $ul.html(""); // clear stale products
+          $ul.append("<li>" + productObject["name"] + "</li>");
+        })
+      }
+    });
+  });
+});
+</script>
