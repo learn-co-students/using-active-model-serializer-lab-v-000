@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
+
   def index
     @products = Product.all
+    render json: @products, status: 200
   end
 
   def inventory
@@ -22,11 +24,12 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+
   def show
     @product = Product.find(params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @post, status: 200 }
+      format.json { render json: @product, status: 200 }
     end
   end
 
