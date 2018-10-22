@@ -1,3 +1,3 @@
 class SimpleProductSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :name
 end
