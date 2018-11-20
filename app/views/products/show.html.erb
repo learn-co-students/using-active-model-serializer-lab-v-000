@@ -1,8 +1,8 @@
 <a href="#" class="js-next" data-id="<%=@product.id%>">Next Product</a>
-<h1 class="productName"><%= @product.name %></h1>
-<p class="productInventory"><%= @product.inventory %></p>
-<p class="productPrice"><%= @product.price %></p>
-<p class="productDescription"><%= @product.description %></p>
+<h1 class="productName">Product: <%= @product.name %></h1>
+<p class="productInventory">Amount in Stock: <%= @product.inventory %></p>
+<p class="productPrice">Price: <%= @product.price %></p>
+<p class="productDescription">Product Description: <%= @product.description %></p>
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
@@ -16,7 +16,7 @@ $(function () {
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
+    return false
   });
 });
 </script>
-
