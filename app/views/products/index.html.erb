@@ -9,22 +9,21 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + ".json", function(description) {
-      $.get("/products/" + id + ".json", function(inventory) {
+    $.get("/products/" + id + ".json", function(data) {
+      var product = data
         var inventoryText = "<strong>Available</strong>";
-        if(inventory["inventory"] == 0){
+        if(product["inventory"] == 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description["description"] + "</p>" + "<p>" + inventoryText + "</p>"
+        var descriptionText = "<p>" + product["description"] + "</p>" + "<p>" + inventoryText + "</p>"
         $("#product-" + id).html(descriptionText);
-        //   $.get("/products/" + id + ".json", function(orders) {
-        //   var ordersArr = orders["orders"]
-        //   ordersArr.forEach(function(el) {
-        //     $("#product-" + id).append(`<li>Order #${el.id}, created at: ${el.created_at}</li>`)
-        //   });
-        // });
+        var orders = product["orders"]
+        var orderList = "";
+        orders.forEach(function(order) {
+          orderList += '<li class="js-order" data-id="' + order["id"] + '">' + 'Order#' + order["id"] + ' - ' + 'created at: ' + order["created_at"] + '</li>';
+        });
+        $("#product-" + id).append(orderList)
       });
-    });
   });
 });
 </script>
