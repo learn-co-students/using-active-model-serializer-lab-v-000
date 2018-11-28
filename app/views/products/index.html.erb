@@ -7,6 +7,21 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
+  $(".js-more").on("click", function(e) {
+    var id = $(this).data("id");
+    $.get("/products/" + id + ".json", function(data) {
+        var inventoryText = "<strong>Available</strong>";
+        if(data["inventory"] === 0) {
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+    });
+  });
+});
+</script>
+<!-- <script type="text/javascript" charset="utf-8">
+$(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
     $.get("/products/" + id + "/description", function(description) {
@@ -21,4 +36,4 @@ $(function() {
     });
   });
 });
-</script>
+</script> -->
