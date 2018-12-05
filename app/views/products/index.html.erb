@@ -3,6 +3,7 @@
   <h3><%= product.id %>:<%= link_to product.name, products_path(product) %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
+  <div id="product-<%= product.id %>-orders"></div>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
@@ -11,18 +12,20 @@ $(function() {
     var id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
         var inventoryText = "<strong>Available</strong>";
-        if(data["inventory"] === "false"){
+        if(data["inventory"] === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
         var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
-
+        $("#product-" + id).html(descriptionText);
         var totalOrders = ""
-        data["orders"].forEach((order) => {
+        data["orders"].forEach(function(order){
             totalOrders += "<p>"  + order["id"] + "</p><p>" + order["created_at"] + "</p>"
-            debugger
+
         })
         debugger
-        $("#product-" + id).html(descriptionText + totalOrders);
+        $("#product-" + id + "-orders").html(totalOrders);
+
+
       });
   });
 });
