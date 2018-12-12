@@ -6,17 +6,16 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
+  event.preventDefault();
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/products/" + nextId + ".json", function(data) {
-      $(".productName").text(data["name"]);
-      $(".productPrice").text(data["price"]);
-      $(".productDescription").text(data["description"]);
-      $(".productInventory").text(data["inventory"]);
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
+    $.get("/products/" + nextId + ".json", function(product) {
+      $(".productName").text(product["name"]);
+      $(".productPrice").text(product["price"]);
+      $(".productInventory").text(product["inventory"]);
+      $(".productDescription").text(product["description"]);
+      $(".js-next").attr("data-id", product["id"]);
     });
   });
 });
 </script>
-
