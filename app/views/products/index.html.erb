@@ -11,13 +11,11 @@ $(function() {
     var id = $(this).data("id");
     //$.get("/products/" + id + ".json", function(product) {
       //need description info
-
       $.get("/products/" + id + ".json", function(product) {      //only need 1 get will get both inv & desc
         var inventoryText = "<strong>Available</strong>";
         if(product["inventory"] <= 0 ){
           inventoryText = "<strong>Sold Out</strong>";
         }
-
         var descriptionText = "<p>" + product[description] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
       });
