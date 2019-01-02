@@ -25,8 +25,10 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     respond_to do |format|
+      #If the format is html i.e we dont append the .json tag to the end of the url we will get the show html page with all valid attributes
       format.html { render :show }
-      format.json { render json: @product.to_json(only: [:id, :name, :description, :price, :inventory])}
+      #if we append the .json tag to the end of the url we will get the raw json data
+      format.json { render json: @product }
     end
   end
 
