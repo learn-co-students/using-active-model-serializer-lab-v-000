@@ -1,10 +1,13 @@
 <h1>Products</h1>
+<hr>
 <% @products.each do |product| %>
-  <h3><%= product.name %></h3>
-  <h2><%= product.inventory %></h2>
+  <h3><%= product.id %>. <%= product.name %></h3>
+  <p>Created at: <%= product.created_at %></p>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
+  <hr>
 <% end %>
+
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
