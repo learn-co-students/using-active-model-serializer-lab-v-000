@@ -9,16 +9,53 @@
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+    $.get("/products/" + id + ".json", function(description) {
+      $.get("/products/" + id + ".json", function(inventory) {
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+        if(inventory["inventory"] === 0 ){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        var descriptionText = "<p>" + description["description"] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
       });
     });
   });
 });
 </script>
+
+
+
+<!-- <h1>Products</h1>
+<% @products.each do |product| %>
+  <h3><%= product.name %></h3>
+  <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <button class="js-more" data-id="<%= product.id %>">More Info</button>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    let id = $(this).data("id");
+    $.get("/products/" + id + ".json", function(product) {
+      debugger;
+      let inventoryText = "<strong>Available</strong>";
+      if(product["inventory"] === 0){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      let orders = product["orders"];
+      let ordersText = "";
+      orders.forEach(function(order) {
+        ordersText += "<ul><li>" + "Order # " + order["id"] + "</li>"
+        ordersText += "<li>" + "Created At: " + order["created_at"] + "</li>"
+      let products = order["products"]
+        ordersText += "<ul>" + "Products: " + "<ul>"
+        products.forEach(function(product) {
+          ordersText += "<li>" + product["name"] + "</li>"
+        })
+      })
+      let descriptionText = "<p>" + product["description"] + "<p>" + inventoryText + "<p>" + "</p><p>" + ordersText + "</p>";
+      $("#product-" + id).html(descriptionText);
+    });
+  });
+});
+</script> -->
