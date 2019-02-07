@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
+    # @products.each do |product|
+    #   render json: product
+    # end
   end
 
   def inventory
