@@ -15,11 +15,11 @@ $(function() {
         if(data["inventory"] === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        let orderText = "<ul>"
-      data.orders.forEach(function (c, i, o) {
-        orderText += "<li>" +  o[i]["id"] + " " + o[i]["created_at"] + "</li>";
-      });
-      var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>" + orderText + "</ul>";
+        <%# let orderText = "<ul>" %>
+      <%# data.orders.forEach(function (c, i, o) { %>
+        <%# orderText += "<li>" +  o[i]["id"] + " " + o[i]["created_at"] + "</li>"; %>
+      <%# }); %>
+      var descriptionText = "<p>" + data["description"] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
       });
     });
