@@ -6,17 +6,23 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-next").on("click", function() {
+  $(".js-next").on("click", function(e) {
+    e.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/products/" + nextId + ".json", function(data) {
+      var availability = "";
+      if(data["inventory"] > 0 ){
+        availability = "Available"
+      } else {
+        availability = "Sold Out"
+      }
       $(".productName").text(data["name"]);
       $(".productPrice").text(data["price"]);
       $(".productDescription").text(data["description"]);
-      $(".productInventory").text(data["inventory"]);
+      $(".productInventory").text(availability);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
   });
 });
 </script>
-
