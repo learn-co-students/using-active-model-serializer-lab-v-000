@@ -1,6 +1,7 @@
 <h1>Products</h1>
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
+  <div id="orders-<%= product.id %>"></div>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
@@ -13,6 +14,10 @@ $(function() {
       var inventoryText = product["inventory"] > 0 ? "Available" : "Sold Out";
       var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
       $("#product-" + id).html(descriptionText);
+
+      product.orders.forEach(function(order) {
+        $("#orders-" + id).append('Order Id: ' + order.id + ' - Created at: ' + order.created_at)
+      });
     });
   });
 });
