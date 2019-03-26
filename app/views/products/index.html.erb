@@ -8,16 +8,19 @@
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
+      console.log("click")
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
+    $.get("/products/" + id + ".json", function(product) {
+        let description = product["description"]
+        let inventory = product["inventory"]
+
+        let inventoryText = "<strong>Available</strong>";
         if(inventory === "false"){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        let descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
-      });
+      //});
     });
   });
 });
