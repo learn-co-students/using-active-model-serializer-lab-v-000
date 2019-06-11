@@ -35,9 +35,9 @@ RSpec.describe "Products", type: :feature do
   describe "products index" do
     it 'gets the description and inventory', js: true do
       product = Product.create!(name: "Test Product", inventory: 0, description: "This is a test description with more text than should be there.")
-      customer = Customer.create(:name => Faker::Name.name)
-      invoice = Invoice.create
-      order = Order.create(customer: customer, invoice: invoice)
+     customer = Customer.create(:name => Faker::Name.name)
+     invoice = Invoice.create
+     order = Order.create(customer: customer, invoice: invoice)
 
       order.products << product
       visit products_path
