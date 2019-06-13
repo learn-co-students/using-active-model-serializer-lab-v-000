@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
+  require 'pry'
+  
   def index
     @products = Product.all
+    binding.pry
   end
 
   # def inventory
