@@ -4,4 +4,9 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def show
+    @order = Order.find(params[:id])
+    render json: @order
+  end
+
 end
