@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
+    @order = Order.find(params[:id])
+    render json: @order
   end
 
 end
