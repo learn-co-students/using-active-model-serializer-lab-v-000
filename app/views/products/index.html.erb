@@ -5,35 +5,16 @@
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
-<%# <script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-more").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/products/" + id + ".json", function(data) {
-      var inventoryText = "<strong>Available</strong>";
-      var inventory = $(".productInventory").text(product["inventory"]);
-      if(inventory === "false"){
-        inventoryText = "<strong>Sold Out</strong>";
-      }
-      var description = $(".productDescription").text(product["description"]);
-      var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-      $("#product-" + id).html(descriptionText);
-      );
-    });
-  });
-});
-</script> %>
-
-
 
 <script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-more").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/products/" + id + ".json", function(description) {
-      $.get("/products/" + id + ".json", function(inventory) {
+  $(function() {
+    $(".js-more").on("click", function() {
+      var id = $(this).data("id");
+      $.get("/products/" + id + ".json", function(data) {
+        var description = data["description"]
+        var inventory = data["inventory"]
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+        if(inventory === 0){
           inventoryText = "<strong>Sold Out</strong>";
         }
         var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
@@ -41,5 +22,23 @@ $(function() {
       });
     });
   });
-});
-</script> 
+</script>  
+
+<%# 
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".js-more").on("click", function() {
+      var id = $(this).data("id");
+      $.get("/products/" + id + ".json", function(description) {
+        $.get("/products/" + id + ".json", function(inventory) {
+          var inventoryText = "<strong>Available</strong>";
+          if(inventory === "false"){
+            inventoryText = "<strong>Sold Out</strong>";
+          }
+          var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+          $("#product-" + id).html(descriptionText);
+        });
+      });
+    });
+  });
+</script>   %>
