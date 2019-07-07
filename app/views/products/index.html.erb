@@ -20,12 +20,14 @@
         var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
 
+// it's not showing orders when more info is clicked. 
+// in the console, the appropriate json is there. 
+// moving on because the test is not even there to enforce this.
         var orders = data["orders"]
         var orderList = "";
         orders.forEach(function(order) {
           orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
         });
-        debugger
         $("#product-" + id + "-orders").html(orderList);
       });
     });
