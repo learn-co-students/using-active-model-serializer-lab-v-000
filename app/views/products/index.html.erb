@@ -19,6 +19,14 @@
         }
         var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
+
+        var orders = data["orders"]
+        var orderList = "";
+        orders.forEach(function(order) {
+          orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
+        });
+        debugger
+        $("#product-" + id + "-orders").html(orderList);
       });
     });
   });

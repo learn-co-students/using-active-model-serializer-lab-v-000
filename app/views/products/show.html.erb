@@ -3,8 +3,7 @@
 <p class="productInventory">Inventory Count: <%= @product.inventory %></p>
 <p class="productPrice">Price: $<%= @product.price %></p>
 <p class="productDescription">Description: <%= @product.description %></p>
-<p class="productCreatedAt">Created at: <%= @product.created_at %></p>
-<% binding.pry %>
+
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function(event) {
@@ -17,7 +16,6 @@ $(function () {
       $(".productPrice").text("Price: $" + product["price"]);
       $(".productDescription").text("Description: " + product["description"]);
       $(".productInventory").text("Inventory Count: " + product["inventory"]);
-      $(".productCreatedAt").text("Created at: " + product["created_at"]);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", product["id"]);
     });
