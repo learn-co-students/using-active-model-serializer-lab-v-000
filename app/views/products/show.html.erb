@@ -1,6 +1,7 @@
 <a href="#" class="js-next" data-id="<%=@product.id%>">Next Product</a>
 <h1 class="productName"><%= @product.name %></h1>
 <p class="productInventory"><%= @product.inventory %></p>
+<p> $(".productName").text(product["name"]); </p>
 <p class="productPrice"><%= @product.price %></p>
 <p class="productDescription"><%= @product.description %></p>
 
@@ -9,7 +10,7 @@ $(function () {
   $(".js-next").on("click", function(event) {
     event.preventDefault()
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/products/" + nextId + ".json", function(data) {
+    $.getJSON("/products/" + nextId + ".json", function(data) {
       var product = data;
       $(".productName").text(product["name"]);
       $(".productPrice").text(product["price"]);
