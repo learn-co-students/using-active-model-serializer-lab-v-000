@@ -14,7 +14,7 @@ Product.destroy_all
 products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
 
 products.each do |p|
-  Product.create(name: p, price: Faker::Number.between(1,1500), inventory: [0,1,2,3].sample, description: Faker::Lorem.paragraph)
+  Product.create(name: p, price: Faker::Number.between(1,15), inventory: [0,1,2,3].sample, description: Faker::Lorem.paragraph)
 end
 
 5.times do
