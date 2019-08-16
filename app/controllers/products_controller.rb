@@ -27,8 +27,8 @@ class ProductsController < ApplicationController
     #render json: @product, status: 200
      respond_to do |format|
        format.html { render :show }
-       format.json {render json: @product, status: 200}
-      #  format.json { render json: @product.to_json(only: [:id, :name, :description, :price, :inventory])}
+       #format.json {render json: @product, status: 200}
+       format.json { render json: @product.to_json(only: [:id, :name, :description, :price, :inventory])}
      end
   end
 
