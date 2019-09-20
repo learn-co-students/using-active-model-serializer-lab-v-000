@@ -7,17 +7,27 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
-  $(".js-more").on("click", function() {
+  $(".js-more").on("click", function(e) {
+    e.preventDefault();
+
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+    $.get("/products/" + id + ".json", function(product_data) {
         var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
+        if( parseInt( product_data["inventory"] ) <= 0 ){
           inventoryText = "<strong>Sold Out</strong>";
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+        var descriptionText = "<p>" + product_data["description"] + "</p><p>" + inventoryText + "</p>";
+        var productOrders = product_data["orders"];
+
+        var orderList = `<ul> ${productOrders.map (
+          o =>
+          '<li>' +
+          o.id + '<br>' +
+          o.created_at +
+          '</li>'
+        ).join(' ')} </ul>`;
+
+        $("#product-" + id).html(descriptionText + orderList);
     });
   });
 });
