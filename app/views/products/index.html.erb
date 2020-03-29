@@ -13,15 +13,13 @@ $(function() {
     $.get("/products/" + id + ".json", function(data) {
       var inventory = data["inventory"];
       var description = data["description"];
-        function(inventory) {
-          // debugger;
-          var inventoryText = "<strong>Available</strong>";
-          if(inventory === "false"){
-            inventoryText = "<strong>Sold Out</strong>";
-          }
-        };
+      var inventoryText = "<strong>Available</strong>";
+      if(inventory === 0){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
       var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
       $("#product-" + id).html(descriptionText);
     });
   });
+});
 </script>
